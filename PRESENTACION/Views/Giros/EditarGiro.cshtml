@@ -1,0 +1,40 @@
+﻿@model ENTIDAD.GiroE
+
+@{
+    ViewBag.Title = "EditarGiro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var listaCiudades = ViewBag.ListadoCiudades;
+}
+
+<h2>Editar Giro</h2>
+
+<table>
+    @using (Html.BeginForm("ActualizarGiro", "Giros", FormMethod.Post))
+    {
+        <tr>
+            <td> ID:  </td>
+            <td><input type="text" name="txtIdGiro" value="@Model.Id_Giro" readonly /></td>
+        </tr>
+        <tr>
+            <td>Giro Recibido: </td>
+            <td><input type="text" name="txtGiro" value="@Model.Giro_Recibido" /></td>
+        </tr>
+        <tr>
+            <td>pais: </td>
+            <td>
+                <select name="cboCiudad">
+                    @foreach (var item in listaCiudades)
+                    {
+                        <option value="@item.Id_Ciudad">@item.Nombre</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">ACTUALIZAR</button></td>
+        </tr>
+    }
+</table>
+

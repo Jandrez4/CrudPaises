@@ -1,0 +1,30 @@
+﻿@model List<ENTIDAD.GiroE>
+@{
+    ViewBag.Title = "ListadoGiros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center><h1>Listado de Giros</h1></center>
+
+
+<table border="1" class="table-primary">
+    <tr class="table-secondary">
+        <th>Id</th>
+        <th>Giro Recibido</th>
+        <th>Ciudad</th>
+    </tr>
+    @foreach (var numero in Model)
+    {
+        <tr>
+            <td >@numero.Id_Giro</td>
+            <td >@numero.Giro_Recibido</td>
+            <td >@numero.ciudadE.Nombre</td>
+
+            <td >@Html.ActionLink("ACTUALIZAR", "EditarGiro", new { IdGiro = numero.Id_Giro })</td>
+            <td>@Html.ActionLink("ELIMINAR", "EliminarGiro", new { IdGiro = numero.Id_Giro })</td>
+        </tr>
+    }
+</table>
+
+
+

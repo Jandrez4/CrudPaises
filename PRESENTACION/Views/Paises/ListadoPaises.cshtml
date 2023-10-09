@@ -1,0 +1,24 @@
+﻿@model List<ENTIDAD.PaisE>
+@{
+    ViewBag.Title = "ListadoPaises";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center><h1>Listado de Paises</h1></center>
+
+<table border="1">
+    <tr>
+        <th> Id</th>
+        <th> Nombre pais </th>
+    </tr>
+    @foreach (var numero in Model)
+    {
+        <tr>
+            <td>@numero.Id_Pais</td>
+            <td>@numero.Nombre</td>
+            <td>@Html.ActionLink("Actualizar", "EditarPais", new { IdPais = numero.Id_Pais })</td>
+            <td>@Html.ActionLink("Eliminar", "EliminarPais", new { IdPais = numero.Id_Pais })</td>
+        </tr>
+    }
+</table>
+

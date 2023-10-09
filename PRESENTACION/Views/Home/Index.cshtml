@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Crud Paises</h1>
+    <p class="lead">Bienvenidos al Crud de Paises con DER.</p>
+</div>
+
+
+<li><a href="/Paises/ListadoPaises">Listado paises</a></li>
+<li><a href="/Ciudades/ListadoCiudades">Listado Ciudades</a></li>
+<li><a href="/Giros/ListadoGiros">Listado Giros</a></li>
+
+
+<div class="row">
+
+    <div class="col-sm-3">
+        <label class="form-label">Paises</label>
+        <select class="form-select form-select-sm" id="dwpaises"></select>
+    </div>
+    
+
+    <div class="col-sm-3">
+            <label class="form-label">Ciudades</label>
+            <select class="form-select form-select-sm" id="dwciudades"></select>
+        </div>
+
+</div>
+
+
+
+
+@section Scripts{
+    <script>
+
+         $(document).ready(function () {
+                obtenerPais()
+            })
+
+        function obtenerPais() {
+            $.ajax({
+                url: "@Url.Action("ListadoPaises", "Paises")",
+                type: "Get",
+                dataType: "json",
+                data: {
+
+                    obtener: "Paises",
+                    nombre: ""
+                },
+                success: function (response) {
+                    console.log(response)
+
+
+                    $("#dwpaises").append(
+                        $("<option>").attr({ "value": "" }).text("Seleccionar")
+                    )
+
+                    $.each(response, function (i, elemento) {
+                        $("#dwpaises").append(
+                            $("<option>").attr({ "value": elemento.Paises }).text(elemento.Paises)
+                        )
+                    })
+                }
+            })
+        }
+
+        function obtenerCiudad() {
+            $.ajax({
+                url: "@Url.Action("DropCiudad", "Ciudades")",
+                type: "Get",
+                dataType: "json",
+                data: {
+
+                    obtener: "ciudad",
+                    nombre: ""
+                },
+                success: function (response) {
+                    console.log(response)
+
+
+                    $("#dwpaises").append(
+                        $("<option>").attr({ "value": "" }).text("Seleccionar")
+                    )
+
+                    $.each(response, function (i, elemento) {
+                        $("#dwpaises").append(
+                            $("<option>").attr({ "value": elemento.obtenerCiudad }).text(elemento.obtenerCiudad)
+                        )
+                    })
+                }
+            })
+        }
+
+    </script>
+}
+
+
+
+
+
+

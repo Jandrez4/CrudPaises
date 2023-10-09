@@ -1,0 +1,27 @@
+﻿@model ENTIDAD.PaisE
+
+@{
+    ViewBag.Title = "EditarPais";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Pais</h2>
+
+<table>
+    @using (Html.BeginForm("ActualizarPais", "Paises", FormMethod.Post))
+    {
+        <tr>
+            <td> ID:  </td>
+            <td><input type="text" name="txtIdPais" value="@Model.Id_Pais" readonly/></td>
+        </tr>
+        <tr>
+            <td> Nombre pais:  </td>
+            <td><input type="text" name="txtNombre" value="@Model.Nombre" /></td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Actualizar</button></td>
+        </tr>
+    }
+</table>
+

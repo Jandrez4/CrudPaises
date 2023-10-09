@@ -1,0 +1,38 @@
+﻿@model ENTIDAD.CiudadE
+
+@{
+    ViewBag.Title = "CrearCiudad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    var listaPaises = ViewBag.ListadoPaises;
+}
+
+<h2>Crear Ciudad</h2>
+
+<table>
+    @using (Html.BeginForm("AgregarCiudad", "Ciudades", FormMethod.Post))
+    {
+        <tr>
+            <td>Nombre Ciudad: </td>
+            <td><input type="text" name="txtCiudad" /></td>
+        </tr>
+        <tr>
+            <td>pais: </td>
+            <td><select name="cboPais">
+                @foreach(var item in listaPaises)
+                {
+                    <option value="@item.Id_Pais">@item.Nombre</option>
+                }
+                </select></td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Agregar</button></td>
+        </tr>
+    }
+</table>
+
+
+    
+

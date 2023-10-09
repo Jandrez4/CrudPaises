@@ -1,0 +1,64 @@
+﻿@model List<ENTIDAD.PaisE>
+
+@{
+    ViewBag.Title = "DropdownPaises";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dropdown Paises</h2>
+
+
+<div class="container">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown">
+            Paises
+        </button>
+        <div class="dropdown-menu">
+
+            @foreach (var drop in Model)
+            {
+                
+                    
+                    @drop.Nombre
+                
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+         $(document).ready(function () {
+                obtenerPais()
+            })
+
+        function obtenerPais() {
+            $.ajax({
+                url: "@Url.Action("ListadoPaises", "Paises")",
+                type: "Get",
+                dataType: "json",
+                data: {
+
+                    obtener: "nombre"
+                },
+                success: function (response) {
+                    console.log(response)
+
+
+                    $("#dropdown1").append(
+                        $("<option>").attr({ "value": "" }).text("Seleccionar")
+                    )
+
+                    $.each(response, function (i, elemento) {
+                        $("#dropdown1").append(
+                            $("<option>").attr({ "value": elemento.nombre }).text(elemento.nombre)
+                        )
+                    })
+                }
+            })
+        }
+
+    </script>
+}

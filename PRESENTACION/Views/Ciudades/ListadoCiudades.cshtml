@@ -1,0 +1,30 @@
+﻿@model List<ENTIDAD.CiudadE>
+@{
+    ViewBag.Title = "ListadoCiudades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center><h1>Listado Ciudades</h1></center>
+
+<table border="1" class="table-primary">
+    <tr class="table-secondary">
+        <th>Id</th>
+        <th>Nombre Ciudad</th>
+        <th>Pais</th>
+    </tr>
+    @foreach (var numero in Model)
+    {
+        
+        <tr class="table-secondary">
+
+            <td class="table-success">@numero.Id_Ciudad</td>
+            <td class="table-success">@numero.Nombre</td>
+            <td class="table-success">@numero.paisE.Nombre</td>
+
+            <td class="table-success">@Html.ActionLink("ACTUALIZAR", "EditarCiudad", new { IdCiudad = numero.Id_Ciudad })</td>
+            <td class="table-success">@Html.ActionLink("ELIMINAR", "EliminarCiudad", new { IdCiudad = numero.Id_Ciudad })</td>
+
+        </tr>
+    }
+</table>
+

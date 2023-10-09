@@ -1,0 +1,38 @@
+﻿@model ENTIDAD.GiroE
+
+@{
+    ViewBag.Title = "CrearGiro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var listaCiudades = ViewBag.ListadoCiudades;
+}
+
+<h2>Crear Giro</h2>
+
+<table>
+    @using (Html.BeginForm("AgregarGiro", "Giros", FormMethod.Post))
+    {
+        <tr>
+            <td>Giro Recibido: </td>
+            <td><input type="text" name="txtGiro" /></td>
+        </tr>
+        <tr>
+            <td>pais: </td>
+            <td>
+                <select name="cboGiro">
+                    @foreach (var item in listaCiudades)
+                    {
+                        <option value="@item.Id_Ciudad">@item.Nombre</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Agregar</button></td>
+        </tr>
+    }
+</table>
+
+
+
